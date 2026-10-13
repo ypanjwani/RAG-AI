@@ -1,0 +1,4 @@
+.env
+config.local.js
+worker/.dev.vars
+worker/.wrangler/

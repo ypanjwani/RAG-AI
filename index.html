@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Explainer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside id="doc-sidebar" class="doc-sidebar" aria-label="Document">
+      <div class="doc-header">
+        <button id="doc-toggle" class="icon-btn panel-btn" type="button" title="Hide document panel" aria-label="Hide document panel">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="1.75" y="2.75" width="14.5" height="12.5" rx="3"></rect>
+            <line x1="6.75" y1="2.75" x2="6.75" y2="15.25"></line>
+          </svg>
+        </button>
+        <div class="doc-heading">
+          <span class="doc-kicker">Start here</span>
+          <h2 class="doc-title">Pick a document</h2>
+        </div>
+      </div>
+
+      <div class="doc-body">
+        <p class="doc-intro">RAG answers questions using a document. Choose one to work with:</p>
+
+        <label class="doc-option">
+          <input type="radio" name="doc-source" value="sample" checked>
+          <span class="doc-option-icon">📝</span>
+          <span class="doc-option-body">
+            <strong>Use sample text</strong>
+            <span>A short ready-made article. The quickest way to start.</span>
+          </span>
+        </label>
+
+        <label class="doc-option">
+          <input type="radio" name="doc-source" value="upload">
+          <span class="doc-option-icon">📄</span>
+          <span class="doc-option-body">
+            <strong>Upload a PDF</strong>
+            <span>Use your own document instead.</span>
+          </span>
+        </label>
+
+        <div id="doc-upload" class="doc-upload" hidden>
+          <div class="doc-note">
+            <strong>⚠️ Only the first page is used</strong>
+            Your PDF can have any number of pages, but this demo reads <b>page 1 only</b> and ignores the rest.
+            Make sure the text you care about is on page 1. Scanned PDFs (photos of pages) have no selectable
+            text and won't work.
+          </div>
+          <label class="file-pick">
+            <input id="doc-file" type="file" accept="application/pdf,.pdf">
+            <span class="file-pick-btn">Choose PDF…</span>
+            <span id="doc-file-name" class="file-pick-name">No file chosen</span>
+          </label>
+        </div>
+
+        <div id="doc-status" class="doc-status"></div>
+
+        <div id="doc-card" class="doc-card" hidden>
+          <div class="doc-card-top">
+            <span class="doc-card-icon">📄</span>
+            <div class="doc-card-info">
+              <div id="doc-card-name" class="doc-card-name"></div>
+              <div id="doc-card-meta" class="doc-card-meta"></div>
+            </div>
+          </div>
+          <p id="doc-card-snippet" class="doc-card-snippet"></p>
+          <button id="doc-view" type="button" class="doc-view-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            View
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-col">
+      <header class="site-header">
+        <div class="title-row">
+          <h1>RAG Explainer</h1>
+          <button id="help-open" type="button" class="btn secondary help-btn">❓ How to use</button>
+        </div>
+        <p class="tagline">See how Retrieval-Augmented Generation works, one step at a time.</p>
+      </header>
+
+      <main id="app"></main>
+    </div>
+
+    <aside id="chat-sidebar" class="chat-sidebar" aria-label="Ask your document">
+      <div class="chat-header">
+        <div class="chat-heading">
+          <span class="doc-kicker">Chat</span>
+          <h2 class="chat-title">Ask your document</h2>
+        </div>
+        <button id="chat-toggle" class="icon-btn panel-btn" type="button" title="Hide chat" aria-label="Hide chat">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="1.75" y="2.75" width="14.5" height="12.5" rx="3"></rect>
+            <line x1="11.25" y1="2.75" x2="11.25" y2="15.25"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div id="chat-messages" class="chat-messages" aria-live="polite"></div>
+
+      <form id="chat-form" class="chat-form">
+        <textarea id="chat-input" rows="2" placeholder="Ask about your document…"></textarea>
+        <button id="chat-send" type="submit">Send</button>
+      </form>
+    </aside>
+  </div>
+
+  <div id="doc-modal" class="modal" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="doc-modal-title">
+      <div class="modal-head">
+        <div>
+          <h2 id="doc-modal-title" class="modal-title"></h2>
+          <div id="doc-modal-meta" class="modal-meta"></div>
+        </div>
+        <button id="doc-modal-close" type="button" class="modal-close" title="Close" aria-label="Close">✕</button>
+      </div>
+      <div id="doc-modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="help-modal" class="modal" hidden>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="help-modal-title">
+      <div class="modal-head">
+        <div>
+          <h2 id="help-modal-title" class="modal-title">How to use this explainer</h2>
+          <div class="modal-meta">No coding or AI background needed. Pick whichever way of learning suits you.</div>
+        </div>
+        <button id="help-close" type="button" class="modal-close" title="Close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body help-body">
+        <p><b>RAG</b> (Retrieval-Augmented Generation) is how an AI answers questions about <i>your</i> document: it first finds the parts of the document that matter, then hands only those parts to the AI to write an answer. This page lets you watch every step of that happen for real, right in your browser.</p>
+
+        <h3>Before you start: pick a document</h3>
+        <p>In the <b>left panel</b>, keep the built-in <b>sample article</b> (a good choice for your first visit) or <b>upload a PDF</b> of your own. Only the first page of a PDF is used. Click <b>View</b> to read the full text.</p>
+
+        <p>Then choose one of the two ways below. You can switch between them at any time.</p>
+
+        <div class="help-paths">
+          <section class="help-path">
+            <h3>💬 Way 1: Learn by chatting</h3>
+            <p class="help-sub">Quickest. Ask first, then look under the hood.</p>
+            <ol>
+              <li>In the <b>right panel</b> (“Ask your document”), type a question about your document, or click a suggested one, and press <b>Send</b>.</li>
+              <li>Watch the row of <b>numbered chips (1–9)</b>. Each one lights up as that step of the pipeline runs. Hover over a chip to see the step’s name.</li>
+              <li>Read the answer. The <b>Sources</b> show which pieces of the document the AI was given.</li>
+              <li>Click any <b>✓ chip</b> to open that step in the middle of the page and see exactly what happened for <i>your</i> question.</li>
+              <li>Below the answer, click <b>🧩 Chunks</b> to see every piece of the document ranked by how well it matched, or <b>⚙️ Change parameters</b> to tweak the settings and <b>Regenerate</b>, then compare the old and new answers.</li>
+            </ol>
+          </section>
+
+          <section class="help-path">
+            <h3>🗂️ Way 2: Walk through the cards</h3>
+            <p class="help-sub">Slower but deeper. Build the pipeline yourself, one step at a time.</p>
+            <ol>
+              <li>On the main page, the <b>cards</b> show the 9 steps in two groups: <b>Indexing</b> (preparing the document, done once) and <b>Querying</b> (what happens each time someone asks).</li>
+              <li>Click <b>Step 1</b> to begin. Each step explains the idea in plain words and gives you something to try.</li>
+              <li>Finish what the step asks (for example, click a button or type a question), then press the <b>next-step button</b> at the bottom of the page.</li>
+              <li>Steps unlock in order, so a 🔒 card just means “finish the earlier steps first”.</li>
+              <li>Play with the sliders and options (chunk size, search method, how many chunks to keep) to see how each choice changes the final answer in Step 9.</li>
+            </ol>
+          </section>
+        </div>
+
+        <h3>Tips</h3>
+        <ul>
+          <li>The first time, the page downloads a small AI model (about 23 MB). After that it loads instantly.</li>
+          <li>Click <b>← All steps</b> at the top of any step to go back to the cards.</li>
+          <li>The side panels can be hidden with the panel icon if you want more room.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- Optional, gitignored: sets window.RAG_DEV_GROQ_KEY for local testing. Missing on deploys (harmless 404). -->
+  <script src="config.local.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
