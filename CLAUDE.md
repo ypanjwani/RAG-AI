@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## What this is
 
 A single-page, client-side interactive explainer that walks complete beginners (learners, students) through the full RAG (Retrieval-Augmented Generation) pipeline step by step: document chunking → chunk embeddings → vector store → query input → query embedding → similarity search → top-k retrieval → chunk inspection → LLM generation. It accompanies a blog post, so every step pairs a plain-language explainer with something interactive and a visual.
@@ -28,9 +24,9 @@ node --check app.js
 
 Three columns (`.layout` in `index.html`):
 
-- **Left: document sidebar** (`#doc-sidebar`) — "Pick a document": use the built-in sample text or upload a PDF, plus a status line and a document card (name, counts, snippet) whose **View** button opens the full text in a centered modal (`openDocModal()`/`closeDocModal()`; closes via ✕, Escape, or backdrop click). It collapses to a slim rail via the panel-toggle icon (`setDocCollapsed()`), and starts collapsed on narrow screens (≤800px, where it stacks above the content).
+- **Left: document sidebar** (`#doc-sidebar`) — This has two options "Upload a PDF" so that user can upload any pdf and "Use sample text" which is already there and user can use it. It has also a button called "View", user can see the whole writen text.
 - **Main: the pipeline** (`#app`) — filled entirely by the router (below).
-- **Right: chat sidebar** (`#chat-sidebar`) — "Ask your document" (see "Chat sidebar" below). Collapses like the left one (`setChatCollapsed()`); stacks below the content on narrow screens.
+- **Right: chat sidebar** (`#chat-sidebar`) — This has "Ask your doc" feature, user can ask any question about the doc, and it will automatically complete the pipeline and give the response.
 
 ### Chat sidebar (runs the whole pipeline per question)
 
@@ -69,7 +65,7 @@ Everything lives in `app.js` as one big script (no modules, no framework). The m
 
 Chunk and query vectors come from `Xenova/all-MiniLM-L6-v2` (`EMBED_MODEL`), a production sentence-transformers model (6-layer transformer, WordPiece tokenizer, 384-dim output), run client-side by Transformers.js (`TRANSFORMERS_URL`, pinned to 3.8.1). `loadEmbedder()` lazily imports the library and builds a `feature-extraction` pipeline once (`dtype: "q8"`; the ~23 MB weights are browser-cached after the first download); `onModelProgress()` drives Step 2's download progress bar in place.
 
-`embedText(text)` runs the model once with `pooling: "none"` and returns `{tokens, tokenVecs, vec}`: the real WordPiece tokens (with `[CLS]`/`[SEP]` and IDs), each token's contextual 384-dim vector (last hidden layer), and the pooled vector — `meanPoolNormalize()` (mean over tokens, then L2-normalize), which matches the library's own `pooling: "mean", normalize: true` output to ~1e-8 (verified). The pooled `vec` is the only thing used for retrieval; token vectors exist for the "tokens → one vector per token → pooled vector" visual (`renderTokenFlow()`, shared by Step 2 and Step 5). Its middle part is `renderEmbTable()`: a token × dimension table of real numbers (6 dims at a time, paged; heatmap-tinted cells; first 12 tokens, expandable) with **average** and **÷ length = final** footer rows, plus a worked-math panel for the clicked dimension. It uses `poolSteps()` (returns `{mean, norm, vec}`; `meanPoolNormalize()` is just its `.vec`) so the shown math is exactly what retrieval uses. View state is `state.embedView`. Step 2's chunk rows also show the first 4 numbers of each vector. `tokenizeText()` is the tokenizer alone (Step 4). Because every vector is unit-length, `cosineSim()` is a plain dot product.
+`embedText(text)` runs the model once with `pooling: "none"` and returns `{tokens, tokenVecs, vec}`: the real WordPiece tokens (with `[CLS]`/`[SEP]` and IDs), each token's contextual 384-dim vector (last hidden layer), and the pooled vector — `meanPoolNormalize()` (mean over tokens, then L2-normalize), which matches the library's own `pooling: "mean", normalize: true` output to ~1e-8 (verified). The pooled `vec` is the only thing used for retrieval; token vectors exist for the "tokens → one vector per token → pooled vector" visual (`renderTokenFlow()`, shared by Step 2 and Step 5). `tokenizeText()` is the tokenizer alone (Step 4). Because every vector is unit-length, `cosineSim()` is a plain dot product.
 
 History: an earlier version used TF-IDF vectors, and before that hashed character-bigram "embeddings" (which failed to discriminate topics). Both were removed in favor of the real model — **don't reintroduce fake/hashed embeddings.**
 
@@ -93,4 +89,9 @@ Step 7 keeps the top `state.topK` (1 to min(6, #chunks), default 3) via `retriev
 
 Step 9 shows the full prompt in color-coded sections (`RAG_SYSTEM_PROMPT` instructions, the retrieved chunks labeled `[Chunk N]`, the question; built by `buildRagMessages()`), sends it, and offers a "Compare: ask without RAG" button (bare question, `NO_RAG_SYSTEM_PROMPT`) for a side-by-side. Answers are Markdown rendered by `renderMarkdown()` (marked + DOMPurify; always sanitize, since it's model output going into `innerHTML`), styled by `.answer-md`.
 
-**API key / proxy:** public deploys call a Cloudflare Worker (`worker/worker.js`, config in `worker/wrangler.toml`) that holds the key as a secret (`wrangler secret put GROQ_API_KEY`) and forwards to Groq. The Worker checks `Origin` against `ALLOWED_ORIGINS` (a light filter), rate-limits per IP via the `LIMITER` binding (10 req / 60 s), validates messages (1–4, system/user only, ≤12k chars), and fixes `model`/`max_tokens` server-side; it passes Groq's JSON through unchanged. In `app.js`, `callGroq()` uses `GROQ_PROXY_URL` (set to the deployed Worker URL; `window.RAG_PROXY_URL` overrides it) when set, otherwise falls back to calling Groq directly with `window.RAG_DEV_GROQ_KEY`. Both globals come from `config.local.js`, a **gitignored** file made by hand from the gitignored `.env` (`GROQ_API_KEY=...`). `index.html` loads it optionally, and a 404 on deploys is harmless. Deploy the Worker with `cd worker && npx wrangler login && npx wrangler secret put GROQ_API_KEY && npx wrangler deploy`, and add the site's URL to `ALLOWED_ORIGINS` before going live. For local proxy testing, put the key in `worker/.dev.vars` (gitignored) and run `npx wrangler dev`. **Never hardcode a real API key into `app.js`, `index.html`, or any committed file** — this app may be deployed publicly (it accompanies a blog post), and anything in the source is visible to every visitor.
+**API key:** currently read only from `window.RAG_DEV_GROQ_KEY`, set by `config.local.js` — a one-line, **gitignored** file generated locally from the gitignored `.env` (`GROQ_API_KEY=...`). There's no script for this; the file is just `window.RAG_DEV_GROQ_KEY = "<key>";`. `index.html` loads it optionally (a 404 on deploys is harmless). There is no key input in the UI, so **a publicly deployed copy has no way for visitors to supply a key yet** — that needs solving before deploying. **Never hardcode a real API key into `app.js`, `index.html`, or any committed file** — this app may be deployed publicly (it accompanies a blog post), and anything in the source is visible to every visitor.
+
+ cd worker
+  npx wrangler login
+  npx wrangler secret put GROQ_API_KEY     # paste the key from .env
+  npx wrangler deploy

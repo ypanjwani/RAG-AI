@@ -1,0 +1,27 @@
+{
+  "title": "Linear Regression",
+  "plan": {
+    "insight": "The best line minimises the sum of squared residuals; moving points or the line changes that sum.",
+    "user_changes": "drag data points, click to add points, slope/intercept of your own line, snap to best fit",
+    "reacts": "residual segments, your MSE vs best MSE, loss landscape position"
+  },
+  "state": { "pts": [], "m": 0, "b": 1 },
+  "init": "return { pts: range(10).map(() => { const x = rand() * 8 + 1; return [x, 0.8 * x + 1 + randn(0, 1)]; }) };",
+  "components": [
+    { "id": "m", "type": "slider", "label": "Slope", "key": "m", "min": -2, "max": 3, "step": 0.01 },
+    { "id": "b", "type": "slider", "label": "Intercept", "key": "b", "min": -4, "max": 8, "step": 0.05 },
+    { "id": "fit", "type": "button", "label": "Best fit",
+      "onClick": "const f = linreg(state.pts.map((p) => p[0]), state.pts.map((p) => p[1]));\nreturn { m: round(clamp(f.m, -2, 3), 2), b: round(clamp(f.b, -4, 8), 2) };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "plot", "type": "chart", "title": "Drag points, click to add", "x": [0, 10], "y": [-2, 12],
+      "draw": "return [\n  ...state.pts.map((p) => line([p, [p[0], state.m * p[0] + state.b]], { color: 'red', opacity: 0.6, dashed: true })),\n  line([[0, state.b], [10, state.m * 10 + state.b]], { color: 'orange' }),\n  points(state.pts, { id: 'p', draggable: true, color: 'blue', r: 6 })\n];",
+      "onDrag": "return { pts: state.pts.map((p, i) => i === index ? [pos.x, pos.y] : p) };",
+      "onClick": "return { pts: [...state.pts, [pos.x, pos.y]] };" },
+    { "id": "land", "type": "chart", "title": "MSE vs slope", "x": [-2, 3], "xLabel": "slope",
+      "draw": "const loss = (m) => mse(state.pts.map((p) => m * p[0] + state.b), state.pts.map((p) => p[1]));\nreturn [line(linspace(-2, 3, 80).map((m) => [m, loss(m)]), { color: 'gray' }), point(state.m, loss(state.m), { color: 'orange' })];" },
+    { "id": "mine", "type": "readout", "label": "Your MSE",
+      "value": "return mse(state.pts.map((p) => state.m * p[0] + state.b), state.pts.map((p) => p[1]));" },
+    { "id": "best", "type": "readout", "label": "Best MSE",
+      "value": "const f = linreg(state.pts.map((p) => p[0]), state.pts.map((p) => p[1]));\nreturn mse(state.pts.map((p) => f.m * p[0] + f.b), state.pts.map((p) => p[1]));" }
+  ]
+}

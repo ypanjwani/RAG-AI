@@ -6,7 +6,7 @@ preview_urls = false  # no extra per-version URLs
 
 [vars]
 # Comma-separated. Add the deployed site's URL (e.g. https://rag-explainer.pages.dev) before going live.
-ALLOWED_ORIGINS = "http://localhost:8743"
+ALLOWED_ORIGINS = "https://ypanjwani.github.io,http://localhost:8743"
 
 # Per-IP cap: 10 requests per 60 seconds (period must be 10 or 60).
 [[ratelimits]]

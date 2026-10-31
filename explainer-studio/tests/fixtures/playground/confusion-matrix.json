@@ -1,0 +1,28 @@
+{
+  "title": "Confusion Matrix",
+  "plan": {
+    "insight": "Moving the decision threshold trades false positives for false negatives; class overlap sets how good any threshold can be.",
+    "user_changes": "threshold, class separation, new sample",
+    "reacts": "matrix counts, outcome shares, score densities with the threshold line, accuracy and F1"
+  },
+  "state": { "t": 0.5, "sep": 1.5, "scores": [] },
+  "init": "return { scores: range(120).map((i) => { const y = i % 2; return [round(sigmoid(randn(y ? state.sep / 2 : -state.sep / 2, 1)), 3), y]; }) };",
+  "components": [
+    { "id": "t", "type": "slider", "label": "Threshold", "key": "t", "min": 0, "max": 1, "step": 0.01 },
+    { "id": "sep", "type": "slider", "label": "Separation", "key": "sep", "min": 0, "max": 4, "step": 0.1,
+      "onChange": "return { sep: value, scores: range(120).map((i) => { const y = i % 2; return [round(sigmoid(randn(y ? value / 2 : -value / 2, 1)), 3), y]; }) };" },
+    { "id": "resample", "type": "button", "label": "New sample",
+      "onClick": "return { scores: range(120).map((i) => { const y = i % 2; return [round(sigmoid(randn(y ? state.sep / 2 : -state.sep / 2, 1)), 3), y]; }) };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "cm", "type": "chart", "title": "Confusion matrix",
+      "draw": "const c = (pred, act) => state.scores.filter((s) => (s[0] >= state.t ? 1 : 0) === pred && s[1] === act).length;\nreturn [heatmap([[c(1, 1), c(0, 1)], [c(1, 0), c(0, 0)]], { showValues: true, min: 0, xLabels: ['Pred +', 'Pred -'], yLabels: ['Actual +', 'Actual -'] })];" },
+    { "id": "share", "type": "chart", "title": "Outcomes",
+      "draw": "const c = (pred, act) => state.scores.filter((s) => (s[0] >= state.t ? 1 : 0) === pred && s[1] === act).length;\nreturn [pie([c(1, 1), c(0, 1), c(1, 0), c(0, 0)], { labels: ['TP', 'FN', 'FP', 'TN'], colors: ['green', 'orange', 'red', 'blue'], donut: 0.45 })];" },
+    { "id": "dens", "type": "chart", "title": "Scores by class", "x": [0, 1], "xLabel": "score",
+      "draw": "const pos = state.scores.filter((s) => s[1] === 1).map((s) => s[0]), neg = state.scores.filter((s) => s[1] === 0).map((s) => s[0]);\nreturn [\n  kde(neg, { range: [0, 1], fill: true, color: 'blue' }), kde(neg, { range: [0, 1], color: 'blue' }),\n  kde(pos, { range: [0, 1], fill: true, color: 'green' }), kde(pos, { range: [0, 1], color: 'green' }),\n  vline(state.t, { color: 'gray', dashed: true })\n];" },
+    { "id": "acc", "type": "readout", "label": "Accuracy",
+      "value": "return state.scores.filter((s) => (s[0] >= state.t ? 1 : 0) === s[1]).length / (state.scores.length || 1);" },
+    { "id": "f1", "type": "readout", "label": "F1",
+      "value": "const tp = state.scores.filter((s) => s[0] >= state.t && s[1] === 1).length;\nconst fp = state.scores.filter((s) => s[0] >= state.t && s[1] === 0).length;\nconst fn = state.scores.filter((s) => s[0] < state.t && s[1] === 1).length;\nreturn 2 * tp / ((2 * tp + fp + fn) || 1);" }
+  ]
+}

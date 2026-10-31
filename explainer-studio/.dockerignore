@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.variety
+worker
+server/.venv
+server/tests/parity
+**/__pycache__
+**/.pytest_cache
+server/instance

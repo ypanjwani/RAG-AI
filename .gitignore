@@ -1,4 +1,49 @@
+# --- Secrets (never commit) ---
 .env
+.env.*
+!.env.example
 config.local.js
-worker/.dev.vars
-worker/.wrangler/
+**/worker/.dev.vars
+*.pem
+*.key
+*.p12
+*.pfx
+# Claude Code's local-only settings (may hold personal permissions)
+**/.claude/settings.local.json
+
+# --- Dependencies and build output ---
+node_modules/
+dist/
+**/app/public/viewer.js
+**/worker/.wrangler/
+coverage/
+
+# --- Python (explainer-studio/server) ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# --- Local data ---
+# Development database (explainer-studio/server/instance/dev.db)
+instance/
+*.db
+*.sqlite
+*.sqlite3
+# Saved test runs (generated pages, may contain paper text)
+.variety/
+# Parity corpus: generated from local .variety specs by `npm run parity`
+explainer-studio/server/tests/parity/
+# Private audit documents
+explainer-studio/audit/
+
+# --- Logs and editor/OS junk ---
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

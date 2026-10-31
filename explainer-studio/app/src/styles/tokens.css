@@ -1,0 +1,94 @@
+/* Surface tokens shared by the app shell and explainers.
+   Light by default; dark via the OS setting unless the user forced a mode
+   (html[data-mode="light" | "dark"]). */
+
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-2: #f9f9f9;          /* sidebar */
+  --surface: #ffffff;       /* cards */
+  --surface-2: #f4f4f4;     /* inputs, chips, composer */
+  --surface-3: #ececec;     /* hover */
+  --text: #0d0d0d;
+  --text-2: #424242;
+  --muted: #6b6b6b;
+  --border: #e5e5e5;
+  --border-strong: #d4d4d4;
+  --overlay: rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 6px 20px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.06), 0 18px 48px rgba(0, 0, 0, 0.12);
+  --ok: #15803d;
+  --ok-soft: #dcfce7;
+  --bad: #b91c1c;
+  --bad-soft: #fee2e2;
+  --focus: #2563eb;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --ui-font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono-font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-mode="light"]) {
+    color-scheme: dark;
+    --bg: #212121;
+    --bg-2: #171717;
+    --surface: #2a2a2a;
+    --surface-2: #303030;
+    --surface-3: #3a3a3a;
+    --text: #ececec;
+    --text-2: #c9c9c9;
+    --muted: #a3a3a3;
+    --border: #3a3a3a;
+    --border-strong: #4a4a4a;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.3), 0 18px 48px rgba(0, 0, 0, 0.45);
+    --ok: #4ade80;
+    --ok-soft: rgba(74, 222, 128, 0.14);
+    --bad: #f87171;
+    --bad-soft: rgba(248, 113, 113, 0.14);
+    --focus: #60a5fa;
+  }
+}
+:root[data-mode="dark"] {
+  color-scheme: dark;
+  --bg: #212121;
+  --bg-2: #171717;
+  --surface: #2a2a2a;
+  --surface-2: #303030;
+  --surface-3: #3a3a3a;
+  --text: #ececec;
+  --text-2: #c9c9c9;
+  --muted: #a3a3a3;
+  --border: #3a3a3a;
+  --border-strong: #4a4a4a;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.3), 0 18px 48px rgba(0, 0, 0, 0.45);
+  --ok: #4ade80;
+  --ok-soft: rgba(74, 222, 128, 0.14);
+  --bad: #f87171;
+  --bad-soft: rgba(248, 113, 113, 0.14);
+  --focus: #60a5fa;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: var(--ui-font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Standalone exported page */
+html.standalone body { overflow-y: auto; }

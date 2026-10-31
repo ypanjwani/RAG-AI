@@ -1,0 +1,23 @@
+{
+  "title": "Kernel Density Estimation",
+  "plan": {
+    "insight": "A KDE puts a small bump on every sample and adds them up; bandwidth decides between spiky and over-smoothed.",
+    "user_changes": "bandwidth, drag samples along the axis, click to add samples, new sample",
+    "reacts": "density curve, per-bin counts"
+  },
+  "state": { "bw": 0.4, "pts": [] },
+  "init": "return { pts: range(30).map((i) => round(clamp(i % 3 ? randn(-1.5, 0.7) : randn(1.8, 0.5), -4, 4), 2)) };",
+  "components": [
+    { "id": "bw", "type": "slider", "label": "Bandwidth", "key": "bw", "min": 0.05, "max": 2, "step": 0.05 },
+    { "id": "resample", "type": "button", "label": "New sample",
+      "onClick": "return { pts: range(30).map((i) => round(clamp(i % 3 ? randn(-1.5, 0.7) : randn(1.8, 0.5), -4, 4), 2)) };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "dens", "type": "chart", "title": "Density (drag or click to add)", "x": [-4, 4], "y": [0, 0.8],
+      "draw": "return [\n  kde(state.pts, { bandwidth: state.bw, range: [-4, 4], fill: true, color: 'purple' }),\n  kde(state.pts, { bandwidth: state.bw, range: [-4, 4], color: 'purple' }),\n  points(state.pts.map((x) => [x, 0.02]), { id: 's', draggable: true, color: 'blue', r: 5, opacity: 0.8 })\n];",
+      "onDrag": "return { pts: state.pts.map((x, i) => i === index ? round(pos.x, 2) : x) };",
+      "onClick": "return { pts: [...state.pts, round(pos.x, 2)] };" },
+    { "id": "counts", "type": "chart", "title": "Counts per bin", "x": [-0.5, 8.5],
+      "draw": "return [countplot(state.pts.map((x) => clamp(Math.round(x), -4, 4)), { order: range(-4, 5), color: 'blue' })];" },
+    { "id": "n", "type": "readout", "label": "Samples", "value": "return state.pts.length;" }
+  ]
+}

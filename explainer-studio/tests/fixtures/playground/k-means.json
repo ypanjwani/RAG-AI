@@ -1,0 +1,26 @@
+{
+  "title": "k-means",
+  "plan": {
+    "insight": "Alternate: assign each point to its nearest centroid, move each centroid to its points' mean, until nothing moves.",
+    "user_changes": "k, drag centroids, click to add points, step/run",
+    "reacts": "point colors, centroid positions, inertia, iteration count"
+  },
+  "state": { "k": 3, "pts": [], "cents": [], "iter": 0 },
+  "init": "const centers = [[2.5, 2.5], [7, 3], [5, 7.5]];\nconst pts = range(60).map((i) => { const c = centers[i % 3]; return [clamp(randn(c[0], 0.9), 0.2, 9.8), clamp(randn(c[1], 0.9), 0.2, 9.8)]; });\nreturn { pts, cents: [[1, 9], [2, 8.5], [3, 9]], iter: 0 };",
+  "components": [
+    { "id": "k", "type": "slider", "label": "k", "key": "k", "min": 2, "max": 6, "step": 1,
+      "onChange": "return { k: value, cents: range(value).map((j) => [1 + j * 1.5, 9]), iter: 0 };" },
+    { "id": "run", "type": "play", "label": "Run", "interval": 500,
+      "onTick": "const lab = state.pts.map((p) => argmin(state.cents.map((c) => dist(p, c))));\nconst cents = state.cents.map((c, j) => { const m = state.pts.filter((p, i) => lab[i] === j); return m.length ? [mean(m.map((p) => p[0])), mean(m.map((p) => p[1]))] : c; });\nconst moved = sum(cents.map((c, j) => dist(c, state.cents[j])));\nif (moved < 1e-6) return null;\nreturn { cents, iter: state.iter + 1 };" },
+    { "id": "step", "type": "button", "label": "Step",
+      "onClick": "const lab = state.pts.map((p) => argmin(state.cents.map((c) => dist(p, c))));\nconst cents = state.cents.map((c, j) => { const m = state.pts.filter((p, i) => lab[i] === j); return m.length ? [mean(m.map((p) => p[0])), mean(m.map((p) => p[1]))] : c; });\nreturn { cents, iter: state.iter + 1 };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "plot", "type": "chart", "title": "Drag centroids, click to add points", "x": [0, 10], "y": [0, 10],
+      "draw": "const pal = ['blue', 'orange', 'green', 'purple', 'pink', 'teal'];\nconst lab = state.pts.map((p) => argmin(state.cents.map((c) => dist(p, c))));\nreturn [\n  points(state.pts, { colors: lab.map((j) => pal[j]), opacity: 0.8 }),\n  points(state.cents, { id: 'c', draggable: true, colors: state.cents.map((c, j) => pal[j]), r: 10 })\n];",
+      "onDrag": "return { cents: state.cents.map((c, j) => j === index ? [pos.x, pos.y] : c), iter: 0 };",
+      "onClick": "return { pts: [...state.pts, [pos.x, pos.y]] };" },
+    { "id": "inertia", "type": "readout", "label": "Inertia",
+      "value": "return sum(state.pts.map((p) => minOf(state.cents.map((c) => dist(p, c) ** 2))));" },
+    { "id": "iter", "type": "readout", "label": "Iterations", "value": "return state.iter;" }
+  ]
+}

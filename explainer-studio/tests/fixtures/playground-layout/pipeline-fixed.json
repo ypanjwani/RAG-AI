@@ -1,0 +1,10 @@
+{
+  "title": "Pipeline",
+  "plan": {"insight": "Each stage passes fewer items on", "mechanism": "k items in, a filter keeps some", "user_changes": "k", "reacts": "link labels"},
+  "state": {"k": 3},
+  "components": [
+    {"id": "s1", "type": "slider", "label": "k", "key": "k", "min": 1, "max": 9, "step": 1},
+    {"id": "c1", "type": "chart", "title": "Pipeline", "x": [0, 10], "y": [0, 6],
+     "draw": "const kept = Math.max(1, state.k - 1);\nreturn [node('q', 1.1, 4.5, { label: 'query', w: 70, h: 32 }), node('ret', 4, 4.5, { label: 'retrieve', w: 80, h: 32, color: 'blue' }), node('rr', 7, 4.5, { label: 'rerank', w: 80, h: 32, color: 'orange' }), node('pk', 7, 1.5, { label: 'pack ' + kept, w: 80, h: 32, color: 'green' }), node('gen', 4, 1.5, { label: 'generate', w: 80, h: 32, color: 'purple' }), link('q', 'ret'), link('ret', 'rr', { label: 'k=' + state.k }), link('rr', 'pk', { label: kept + ' kept' }), link('pk', 'gen')];"}
+  ]
+}

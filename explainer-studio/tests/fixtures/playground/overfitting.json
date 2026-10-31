@@ -1,0 +1,25 @@
+{
+  "title": "Overfitting",
+  "plan": {
+    "insight": "More flexible models keep lowering training error, but test error turns back up once they fit the noise.",
+    "user_changes": "polynomial degree, noise level, drag training points",
+    "reacts": "fitted curve, train/test error vs degree, current errors"
+  },
+  "state": { "deg": 3, "noise": 0.3, "train": [], "test": [] },
+  "init": "const gen = (n) => range(n).map(() => { const x = rand() * 2 - 1; return [x, Math.sin(Math.PI * x) + randn(0, state.noise)]; });\nreturn { train: gen(14), test: gen(40) };",
+  "components": [
+    { "id": "deg", "type": "slider", "label": "Degree", "key": "deg", "min": 1, "max": 12, "step": 1 },
+    { "id": "noise", "type": "slider", "label": "Noise", "key": "noise", "min": 0, "max": 1, "step": 0.05,
+      "onChange": "const gen = (n) => range(n).map(() => { const x = rand() * 2 - 1; return [x, Math.sin(Math.PI * x) + randn(0, value)]; });\nreturn { noise: value, train: gen(14), test: gen(40) };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "fit", "type": "chart", "title": "Fit (drag training points)", "x": [-1, 1], "y": [-2.5, 2.5],
+      "draw": "const c = polyfit(state.train.map((p) => p[0]), state.train.map((p) => p[1]), state.deg);\nreturn [\n  line(linspace(-1, 1, 100).map((x) => [x, Math.sin(Math.PI * x)]), { color: 'gray', dashed: true }),\n  points(state.test, { color: 'gray', opacity: 0.35, r: 3 }),\n  line(linspace(-1, 1, 200).map((x) => [x, polyval(c, x)]), { color: 'orange' }),\n  points(state.train, { id: 'train', draggable: true, color: 'blue', r: 6 })\n];",
+      "onDrag": "return { train: state.train.map((p, i) => i === index ? [pos.x, pos.y] : p) };" },
+    { "id": "curve", "type": "chart", "title": "Error vs degree", "x": [1, 12], "xLabel": "degree", "yLabel": "log10 MSE",
+      "draw": "const xs = state.train.map((p) => p[0]), ys = state.train.map((p) => p[1]);\nconst err = (c, data) => Math.log10(mse(data.map((p) => polyval(c, p[0])), data.map((p) => p[1])) + 1e-6);\nconst rows = range(1, 13).map((d) => { const c = polyfit(xs, ys, d); return [d, err(c, state.train), err(c, state.test)]; });\nreturn [\n  line(rows.map((r) => [r[0], r[1]]), { color: 'blue' }),\n  line(rows.map((r) => [r[0], r[2]]), { color: 'red' }),\n  vline(state.deg, { color: 'gray', dashed: true }),\n  text(11.5, rows[10][1], 'train', { color: 'blue', align: 'right' }),\n  text(11.5, rows[10][2], 'test', { color: 'red', align: 'right' })\n];" },
+    { "id": "trainErr", "type": "readout", "label": "Train MSE",
+      "value": "const c = polyfit(state.train.map((p) => p[0]), state.train.map((p) => p[1]), state.deg);\nreturn mse(state.train.map((p) => polyval(c, p[0])), state.train.map((p) => p[1]));" },
+    { "id": "testErr", "type": "readout", "label": "Test MSE",
+      "value": "const c = polyfit(state.train.map((p) => p[0]), state.train.map((p) => p[1]), state.deg);\nreturn mse(state.test.map((p) => polyval(c, p[0])), state.test.map((p) => p[1]));" }
+  ]
+}

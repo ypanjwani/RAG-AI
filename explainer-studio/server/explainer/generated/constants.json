@@ -1,0 +1,36 @@
+{
+ "LIMITS": {
+  "conceptChars": 4000,
+  "paperChars": 300000,
+  "sections": 80,
+  "chatMessages": 20,
+  "chatChars": 40000,
+  "editChars": 60000,
+  "editMessages": 40,
+  "followUpChars": 90000,
+  "keptChars": 60000,
+  "widgetChars": 200000,
+  "sectionChars": 8000,
+  "sectionPrevious": 12000,
+  "formulaLatex": 2000
+ },
+ "LITE_DROPPED": [
+  "quiz",
+  "reveal",
+  "predict",
+  "examples",
+  "flipcards",
+  "experiment",
+  "sampling",
+  "training"
+ ],
+ "CONTROL_TYPES": [
+  "slider",
+  "choice",
+  "toggle",
+  "presets"
+ ],
+ "MAX_STAGES": 20,
+ "WIDGET_MAX_CHARS": 40000,
+ "MAX_CLAIMS": 120
+}

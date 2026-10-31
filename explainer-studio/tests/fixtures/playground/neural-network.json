@@ -1,0 +1,30 @@
+{
+  "title": "Neural Network",
+  "plan": {
+    "insight": "A hidden layer bends the decision boundary; training adjusts weights until the regions match the data.",
+    "user_changes": "hidden units, learning rate, train/step, drag the probe point",
+    "reacts": "network weights and activations for the probe, decision regions, loss curve, accuracy"
+  },
+  "state": { "hidden": 4, "lr": 1, "pts": [], "net": {}, "loss": [], "epoch": 0, "probe": [0.5, -0.5] },
+  "init": "const pts = range(60).map(() => { const x = rand() * 2 - 1, y = rand() * 2 - 1; return [round(x, 2), round(y, 2), x * y > 0 ? 1 : 0]; });\nreturn { pts, net: mlpInit([2, state.hidden, 1]), loss: [], epoch: 0 };",
+  "components": [
+    { "id": "hidden", "type": "slider", "label": "Hidden units", "key": "hidden", "min": 1, "max": 8, "step": 1,
+      "onChange": "return { hidden: value, net: mlpInit([2, value, 1]), loss: [], epoch: 0 };" },
+    { "id": "lr", "type": "slider", "label": "Learning rate", "key": "lr", "min": 0.05, "max": 3, "step": 0.05 },
+    { "id": "train", "type": "play", "label": "Train", "interval": 60,
+      "onTick": "const X = state.pts.map((p) => [p[0], p[1]]), Y = state.pts.map((p) => p[2]);\nlet net = state.net, loss = 0;\nfor (let i = 0; i < 5; i++) { const r = mlpStep(net, X, Y, state.lr); net = r.net; loss = r.loss; }\nif (state.epoch >= 3000) return null;\nreturn { net, loss: [...state.loss, round(loss, 4)].slice(-300), epoch: state.epoch + 5 };" },
+    { "id": "reinit", "type": "button", "label": "New weights",
+      "onClick": "return { net: mlpInit([2, state.hidden, 1]), loss: [], epoch: 0 };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "regions", "type": "chart", "title": "Decision regions (drag the probe)", "x": [-1, 1], "y": [-1, 1],
+      "draw": "const k = 24, g = range(k).map((r) => range(k).map((c) => mlpForward(state.net, [-1 + (c + 0.5) * 2 / k, 1 - (r + 0.5) * 2 / k]).out[0]));\nreturn [\n  heatmap(g, { x: [-1, 1], y: [-1, 1], min: 0, max: 1, color: 'orange' }),\n  points(state.pts.map((p) => [p[0], p[1]]), { colors: state.pts.map((p) => p[2] ? 'orange' : 'blue'), r: 4 }),\n  point(state.probe[0], state.probe[1], { id: 'probe', draggable: true, color: 'gray', r: 8 })\n];",
+      "onDrag": "return { probe: [round(pos.x, 2), round(pos.y, 2)] };" },
+    { "id": "net", "type": "chart", "title": "Network at the probe",
+      "draw": "return [mlpGraph(state.net, mlpForward(state.net, state.probe).acts, { id: 'net', showValues: true })];" },
+    { "id": "lossChart", "type": "chart", "title": "Loss", "xLabel": "epoch",
+      "draw": "return [line(state.loss.map((v, i) => [i * 5, v]), { color: 'red' })];" },
+    { "id": "acc", "type": "readout", "label": "Accuracy",
+      "value": "return mean(state.pts.map((p) => ((mlpForward(state.net, [p[0], p[1]]).out[0] > 0.5 ? 1 : 0) === p[2] ? 1 : 0)));" },
+    { "id": "ep", "type": "readout", "label": "Epoch", "value": "return state.epoch;" }
+  ]
+}

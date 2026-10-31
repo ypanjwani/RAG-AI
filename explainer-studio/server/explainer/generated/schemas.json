@@ -1,0 +1,5698 @@
+{
+ "blockOrder": [
+  "text",
+  "callout",
+  "formula",
+  "flipcards",
+  "reveal",
+  "tabs",
+  "compare",
+  "quiz",
+  "predict",
+  "slider",
+  "choice",
+  "plot",
+  "bars",
+  "readout",
+  "samples",
+  "heatmap",
+  "trajectory",
+  "matrix",
+  "calculator",
+  "cards",
+  "toggle",
+  "presets",
+  "experiment",
+  "examples",
+  "table",
+  "conceptmap",
+  "tokens",
+  "attention",
+  "sampling",
+  "embedding",
+  "architecture",
+  "pipeline",
+  "training",
+  "chart",
+  "scene",
+  "widget"
+ ],
+ "promptBlockOrder": [
+  "text",
+  "callout",
+  "formula",
+  "flipcards",
+  "reveal",
+  "tabs",
+  "compare",
+  "quiz",
+  "predict",
+  "slider",
+  "choice",
+  "plot",
+  "bars",
+  "readout",
+  "samples",
+  "heatmap",
+  "trajectory",
+  "matrix",
+  "calculator",
+  "cards",
+  "toggle",
+  "presets",
+  "experiment",
+  "examples",
+  "table",
+  "conceptmap",
+  "tokens",
+  "attention",
+  "sampling",
+  "embedding",
+  "architecture",
+  "pipeline",
+  "training"
+ ],
+ "blocks": {
+  "text": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "text"
+     ]
+    },
+    "md": {
+     "t": "string"
+    }
+   }
+  },
+  "callout": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "callout"
+     ]
+    },
+    "variant": {
+     "t": "enum",
+     "values": [
+      "info",
+      "analogy",
+      "warning",
+      "key"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "md": {
+     "t": "string"
+    }
+   }
+  },
+  "formula": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "formula"
+     ]
+    },
+    "latex": {
+     "t": "string"
+    },
+    "caption": {
+     "t": "string"
+    },
+    "terms": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "symbol": {
+        "t": "string"
+       },
+       "meaning": {
+        "t": "string"
+       },
+       "var": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "flipcards": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "flipcards"
+     ]
+    },
+    "cards": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "front": {
+        "t": "string"
+       },
+       "back": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "reveal": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "reveal"
+     ]
+    },
+    "prompt": {
+     "t": "string"
+    },
+    "answer": {
+     "t": "string"
+    }
+   }
+  },
+  "tabs": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "tabs"
+     ]
+    },
+    "tabs": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "md": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "compare": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "compare"
+     ]
+    },
+    "left": {
+     "t": "object",
+     "shape": {
+      "title": {
+       "t": "string"
+      },
+      "points": {
+       "t": "array",
+       "element": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "right": {
+     "t": "object",
+     "shape": {
+      "title": {
+       "t": "string"
+      },
+      "points": {
+       "t": "array",
+       "element": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "quiz": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "quiz"
+     ]
+    },
+    "questions": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "q": {
+        "t": "string"
+       },
+       "choices": {
+        "t": "array",
+        "element": {
+         "t": "string"
+        }
+       },
+       "answer": {
+        "t": "number",
+        "int": true
+       },
+       "explain": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "predict": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "predict"
+     ]
+    },
+    "question": {
+     "t": "string"
+    },
+    "choices": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "answer": {
+     "t": "number",
+     "int": true
+    },
+    "explain": {
+     "t": "string"
+    }
+   }
+  },
+  "slider": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "slider"
+     ]
+    },
+    "var": {
+     "t": "string"
+    },
+    "label": {
+     "t": "string"
+    },
+    "min": {
+     "t": "number",
+     "int": false
+    },
+    "max": {
+     "t": "number",
+     "int": false
+    },
+    "step": {
+     "t": "number",
+     "int": false
+    },
+    "value": {
+     "t": "number",
+     "int": false
+    },
+    "unit": {
+     "t": "string"
+    }
+   }
+  },
+  "choice": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "choice"
+     ]
+    },
+    "var": {
+     "t": "string"
+    },
+    "label": {
+     "t": "string"
+    },
+    "options": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "value": {
+        "t": "number",
+        "int": false
+       }
+      }
+     }
+    },
+    "value": {
+     "t": "number",
+     "int": false
+    }
+   }
+  },
+  "plot": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "plot"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "xLabel": {
+     "t": "string"
+    },
+    "yLabel": {
+     "t": "string"
+    },
+    "xMin": {
+     "t": "number",
+     "int": false
+    },
+    "xMax": {
+     "t": "number",
+     "int": false
+    },
+    "yMin": {
+     "t": "number",
+     "int": false
+    },
+    "yMax": {
+     "t": "number",
+     "int": false
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "series": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "markerX": {
+     "t": "string"
+    },
+    "shade": {
+     "t": "optional",
+     "inner": {
+      "t": "object",
+      "shape": {
+       "series": {
+        "t": "number",
+        "int": true
+       },
+       "from": {
+        "t": "string"
+       },
+       "to": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "sweepVar": {
+     "t": "optional",
+     "inner": {
+      "t": "string"
+     }
+    }
+   }
+  },
+  "bars": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "bars"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "labels": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "values": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "normalize": {
+     "t": "boolean"
+    }
+   }
+  },
+  "readout": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "readout"
+     ]
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       },
+       "digits": {
+        "t": "number",
+        "int": true
+       },
+       "kind": {
+        "t": "optional",
+        "inner": {
+         "t": "enum",
+         "values": [
+          "number",
+          "percent",
+          "probability"
+         ]
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "samples": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "samples"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "values": {
+     "t": "string"
+    },
+    "xLabel": {
+     "t": "string"
+    },
+    "markers": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "band": {
+     "t": "optional",
+     "inner": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "from": {
+        "t": "string"
+       },
+       "to": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "stats": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       },
+       "digits": {
+        "t": "number",
+        "int": true
+       },
+       "kind": {
+        "t": "optional",
+        "inner": {
+         "t": "enum",
+         "values": [
+          "number",
+          "percent",
+          "probability"
+         ]
+        }
+       }
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "heatmap": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "heatmap"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "expr": {
+     "t": "string"
+    },
+    "xMin": {
+     "t": "number",
+     "int": false
+    },
+    "xMax": {
+     "t": "number",
+     "int": false
+    },
+    "yMin": {
+     "t": "number",
+     "int": false
+    },
+    "yMax": {
+     "t": "number",
+     "int": false
+    },
+    "xLabel": {
+     "t": "string"
+    },
+    "yLabel": {
+     "t": "string"
+    },
+    "zLabel": {
+     "t": "string"
+    },
+    "diverging": {
+     "t": "boolean"
+    },
+    "marker": {
+     "t": "optional",
+     "inner": {
+      "t": "object",
+      "shape": {
+       "x": {
+        "t": "string"
+       },
+       "y": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "trajectory": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "trajectory"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "state": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "name": {
+        "t": "string"
+       },
+       "init": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "update": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "name": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "steps": {
+     "t": "string"
+    },
+    "mode": {
+     "t": "enum",
+     "values": [
+      "time",
+      "path"
+     ]
+    },
+    "series": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "logY": {
+     "t": "boolean"
+    },
+    "path": {
+     "t": "optional",
+     "inner": {
+      "t": "object",
+      "shape": {
+       "x": {
+        "t": "string"
+       },
+       "y": {
+        "t": "string"
+       },
+       "xMin": {
+        "t": "number",
+        "int": false
+       },
+       "xMax": {
+        "t": "number",
+        "int": false
+       },
+       "yMin": {
+        "t": "number",
+        "int": false
+       },
+       "yMax": {
+        "t": "number",
+        "int": false
+       },
+       "xLabel": {
+        "t": "string"
+       },
+       "yLabel": {
+        "t": "string"
+       },
+       "surface": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "matrix": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "matrix"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "op": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "digits": {
+     "t": "number",
+     "int": true
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "calculator": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "calculator"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "rows": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "latex": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       },
+       "note": {
+        "t": "string"
+       },
+       "digits": {
+        "t": "number",
+        "int": true
+       }
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "cards": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "cards"
+     ]
+    },
+    "variant": {
+     "t": "enum",
+     "values": [
+      "definition",
+      "rule",
+      "tip",
+      "mistake",
+      "claim",
+      "keynumber"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "items": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "title": {
+        "t": "string"
+       },
+       "md": {
+        "t": "string"
+       },
+       "breaksIf": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "evidence": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "value": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "toggle": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "toggle"
+     ]
+    },
+    "var": {
+     "t": "string"
+    },
+    "label": {
+     "t": "string"
+    },
+    "on": {
+     "t": "string"
+    },
+    "off": {
+     "t": "string"
+    },
+    "value": {
+     "t": "number",
+     "int": true
+    }
+   }
+  },
+  "presets": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "presets"
+     ]
+    },
+    "label": {
+     "t": "string"
+    },
+    "items": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "set": {
+        "t": "array",
+        "element": {
+         "t": "object",
+         "shape": {
+          "var": {
+           "t": "string"
+          },
+          "value": {
+           "t": "number",
+           "int": false
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "experiment": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "experiment"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "trial": {
+     "t": "string"
+    },
+    "outcomes": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "string"
+      }
+     }
+    },
+    "valueLabel": {
+     "t": "string"
+    },
+    "repeats": {
+     "t": "array",
+     "element": {
+      "t": "number",
+      "int": true
+     }
+    },
+    "truth": {
+     "t": "optional",
+     "inner": {
+      "t": "string"
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "examples": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "examples"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "items": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "title": {
+        "t": "string"
+       },
+       "set": {
+        "t": "array",
+        "element": {
+         "t": "object",
+         "shape": {
+          "var": {
+           "t": "string"
+          },
+          "value": {
+           "t": "number",
+           "int": false
+          }
+         }
+        }
+       },
+       "focus": {
+        "t": "string"
+       },
+       "steps": {
+        "t": "optional",
+        "inner": {
+         "t": "array",
+         "element": {
+          "t": "string"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "table": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "table"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "columns": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "rows": {
+     "t": "array",
+     "element": {
+      "t": "array",
+      "element": {
+       "t": "string"
+      }
+     }
+    },
+    "digits": {
+     "t": "optional",
+     "inner": {
+      "t": "number",
+      "int": true
+     }
+    },
+    "highlight": {
+     "t": "optional",
+     "inner": {
+      "t": "object",
+      "shape": {
+       "row": {
+        "t": "number",
+        "int": true
+       },
+       "col": {
+        "t": "number",
+        "int": true
+       }
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "conceptmap": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "conceptmap"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "nodes": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "id": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       },
+       "sub": {
+        "t": "string"
+       },
+       "desc": {
+        "t": "string"
+       },
+       "stage": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "edges": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "from": {
+        "t": "string"
+       },
+       "to": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "tokens": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "tokens"
+     ]
+    },
+    "text": {
+     "t": "string"
+    },
+    "tokens": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "attention": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "attention"
+     ]
+    },
+    "tokens": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "weights": {
+     "t": "array",
+     "element": {
+      "t": "array",
+      "element": {
+       "t": "number",
+       "int": false
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "sampling": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "sampling"
+     ]
+    },
+    "context": {
+     "t": "string"
+    },
+    "candidates": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "token": {
+        "t": "string"
+       },
+       "logit": {
+        "t": "number",
+        "int": false
+       }
+      }
+     }
+    }
+   }
+  },
+  "embedding": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "embedding"
+     ]
+    },
+    "points": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "x": {
+        "t": "number",
+        "int": false
+       },
+       "y": {
+        "t": "number",
+        "int": false
+       },
+       "group": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "architecture": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "architecture"
+     ]
+    },
+    "nodes": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "id": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       },
+       "detail": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "edges": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "from": {
+        "t": "string"
+       },
+       "to": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "pipeline": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "pipeline"
+     ]
+    },
+    "steps": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "input": {
+        "t": "string"
+       },
+       "output": {
+        "t": "string"
+       },
+       "detail": {
+        "t": "string"
+       }
+      }
+     }
+    }
+   }
+  },
+  "training": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "training"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "caption": {
+     "t": "string"
+    },
+    "showValidation": {
+     "t": "boolean"
+    }
+   }
+  },
+  "chart": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "chart"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "lesson": {
+     "t": "string"
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "series": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "label": {
+        "t": "string"
+       },
+       "expr": {
+        "t": "string"
+       }
+      }
+     }
+    },
+    "x": {
+     "t": "string"
+    },
+    "by": {
+     "t": "string"
+    },
+    "at": {
+     "t": "array",
+     "element": {
+      "t": "number",
+      "int": false
+     }
+    },
+    "view": {
+     "t": "enum",
+     "values": [
+      "line",
+      "lines",
+      "heatmap",
+      "histogram",
+      "compare",
+      "running",
+      "bars",
+      "scatter",
+      "band",
+      "box",
+      "groupedbars"
+     ]
+    },
+    "labels": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "scene": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "scene"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "lesson": {
+     "t": "string"
+    },
+    "state": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "name": {
+        "t": "string"
+       },
+       "label": {
+        "t": "string"
+       },
+       "value": {
+        "t": "number",
+        "int": false
+       },
+       "min": {
+        "t": "number",
+        "int": false
+       },
+       "max": {
+        "t": "number",
+        "int": false
+       },
+       "step": {
+        "t": "number",
+        "int": false
+       }
+      }
+     }
+    },
+    "defs": {
+     "t": "optional",
+     "inner": {
+      "t": "array",
+      "element": {
+       "t": "object",
+       "shape": {
+        "name": {
+         "t": "string"
+        },
+        "expr": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "elements": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "id": {
+        "t": "string"
+       },
+       "kind": {
+        "t": "enum",
+        "values": [
+         "slider",
+         "button",
+         "chart",
+         "readout",
+         "bars",
+         "table",
+         "text"
+        ]
+       },
+       "visible": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "label": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "var": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "disabled": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "series": {
+        "t": "optional",
+        "inner": {
+         "t": "array",
+         "element": {
+          "t": "object",
+          "shape": {
+           "label": {
+            "t": "string"
+           },
+           "expr": {
+            "t": "string"
+           }
+          }
+         }
+        }
+       },
+       "x": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "by": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "at": {
+        "t": "optional",
+        "inner": {
+         "t": "array",
+         "element": {
+          "t": "number",
+          "int": false
+         }
+        }
+       },
+       "view": {
+        "t": "optional",
+        "inner": {
+         "t": "enum",
+         "values": [
+          "line",
+          "lines",
+          "heatmap",
+          "histogram",
+          "compare",
+          "running",
+          "bars",
+          "scatter",
+          "band",
+          "box",
+          "groupedbars"
+         ]
+        }
+       },
+       "expr": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "digits": {
+        "t": "optional",
+        "inner": {
+         "t": "number",
+         "int": true
+        }
+       },
+       "format": {
+        "t": "optional",
+        "inner": {
+         "t": "enum",
+         "values": [
+          "number",
+          "percent",
+          "probability"
+         ]
+        }
+       },
+       "labels": {
+        "t": "optional",
+        "inner": {
+         "t": "array",
+         "element": {
+          "t": "string"
+         }
+        }
+       },
+       "values": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "highlight": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "columns": {
+        "t": "optional",
+        "inner": {
+         "t": "array",
+         "element": {
+          "t": "string"
+         }
+        }
+       },
+       "rows": {
+        "t": "optional",
+        "inner": {
+         "t": "array",
+         "element": {
+          "t": "array",
+          "element": {
+           "t": "string"
+          }
+         }
+        }
+       },
+       "md": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       }
+      }
+     }
+    },
+    "rules": {
+     "t": "array",
+     "element": {
+      "t": "object",
+      "shape": {
+       "when": {
+        "t": "enum",
+        "values": [
+         "click",
+         "change",
+         "every",
+         "start"
+        ]
+       },
+       "target": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "ms": {
+        "t": "optional",
+        "inner": {
+         "t": "number",
+         "int": false
+        }
+       },
+       "if": {
+        "t": "optional",
+        "inner": {
+         "t": "string"
+        }
+       },
+       "set": {
+        "t": "array",
+        "element": {
+         "t": "object",
+         "shape": {
+          "var": {
+           "t": "string"
+          },
+          "expr": {
+           "t": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "layout": {
+     "t": "enum",
+     "values": [
+      "stack",
+      "grid"
+     ]
+    },
+    "caption": {
+     "t": "string"
+    }
+   }
+  },
+  "widget": {
+   "t": "object",
+   "shape": {
+    "type": {
+     "t": "literal",
+     "values": [
+      "widget"
+     ]
+    },
+    "title": {
+     "t": "string"
+    },
+    "html": {
+     "t": "string"
+    },
+    "plan": {
+     "t": "optional",
+     "inner": {
+      "t": "string"
+     }
+    }
+   }
+  }
+ },
+ "outline": {
+  "t": "object",
+  "shape": {
+   "title": {
+    "t": "string"
+   },
+   "subtitle": {
+    "t": "string"
+   },
+   "level": {
+    "t": "enum",
+    "values": [
+     "beginner",
+     "student",
+     "practitioner"
+    ]
+   },
+   "layout": {
+    "t": "enum",
+    "values": [
+     "article",
+     "pipeline"
+    ]
+   },
+   "keyIntuition": {
+    "t": "string"
+   },
+   "phases": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "id": {
+       "t": "string"
+      },
+      "label": {
+       "t": "string"
+      }
+     }
+    }
+   },
+   "stages": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "id": {
+       "t": "string"
+      },
+      "label": {
+       "t": "string"
+      },
+      "phase": {
+       "t": "string"
+      },
+      "blurb": {
+       "t": "string"
+      },
+      "blocks": {
+       "t": "array",
+       "element": {
+        "t": "union",
+        "options": [
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "text"
+            ]
+           },
+           "md": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "callout"
+            ]
+           },
+           "variant": {
+            "t": "enum",
+            "values": [
+             "info",
+             "analogy",
+             "warning",
+             "key"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "md": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "formula"
+            ]
+           },
+           "latex": {
+            "t": "string"
+           },
+           "caption": {
+            "t": "string"
+           },
+           "terms": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "symbol": {
+               "t": "string"
+              },
+              "meaning": {
+               "t": "string"
+              },
+              "var": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "flipcards"
+            ]
+           },
+           "cards": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "front": {
+               "t": "string"
+              },
+              "back": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "reveal"
+            ]
+           },
+           "prompt": {
+            "t": "string"
+           },
+           "answer": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "tabs"
+            ]
+           },
+           "tabs": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "md": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "compare"
+            ]
+           },
+           "left": {
+            "t": "object",
+            "shape": {
+             "title": {
+              "t": "string"
+             },
+             "points": {
+              "t": "array",
+              "element": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "right": {
+            "t": "object",
+            "shape": {
+             "title": {
+              "t": "string"
+             },
+             "points": {
+              "t": "array",
+              "element": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "quiz"
+            ]
+           },
+           "questions": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "q": {
+               "t": "string"
+              },
+              "choices": {
+               "t": "array",
+               "element": {
+                "t": "string"
+               }
+              },
+              "answer": {
+               "t": "number",
+               "int": true
+              },
+              "explain": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "predict"
+            ]
+           },
+           "question": {
+            "t": "string"
+           },
+           "choices": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "answer": {
+            "t": "number",
+            "int": true
+           },
+           "explain": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "slider"
+            ]
+           },
+           "var": {
+            "t": "string"
+           },
+           "label": {
+            "t": "string"
+           },
+           "min": {
+            "t": "number",
+            "int": false
+           },
+           "max": {
+            "t": "number",
+            "int": false
+           },
+           "step": {
+            "t": "number",
+            "int": false
+           },
+           "value": {
+            "t": "number",
+            "int": false
+           },
+           "unit": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "choice"
+            ]
+           },
+           "var": {
+            "t": "string"
+           },
+           "label": {
+            "t": "string"
+           },
+           "options": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "value": {
+               "t": "number",
+               "int": false
+              }
+             }
+            }
+           },
+           "value": {
+            "t": "number",
+            "int": false
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "plot"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "xLabel": {
+            "t": "string"
+           },
+           "yLabel": {
+            "t": "string"
+           },
+           "xMin": {
+            "t": "number",
+            "int": false
+           },
+           "xMax": {
+            "t": "number",
+            "int": false
+           },
+           "yMin": {
+            "t": "number",
+            "int": false
+           },
+           "yMax": {
+            "t": "number",
+            "int": false
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "series": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "markerX": {
+            "t": "string"
+           },
+           "shade": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "series": {
+               "t": "number",
+               "int": true
+              },
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "sweepVar": {
+            "t": "optional",
+            "inner": {
+             "t": "string"
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "bars"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "labels": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "values": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "normalize": {
+            "t": "boolean"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "readout"
+            ]
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              },
+              "digits": {
+               "t": "number",
+               "int": true
+              },
+              "kind": {
+               "t": "optional",
+               "inner": {
+                "t": "enum",
+                "values": [
+                 "number",
+                 "percent",
+                 "probability"
+                ]
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "samples"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "values": {
+            "t": "string"
+           },
+           "xLabel": {
+            "t": "string"
+           },
+           "markers": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "band": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "stats": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              },
+              "digits": {
+               "t": "number",
+               "int": true
+              },
+              "kind": {
+               "t": "optional",
+               "inner": {
+                "t": "enum",
+                "values": [
+                 "number",
+                 "percent",
+                 "probability"
+                ]
+               }
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "heatmap"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "expr": {
+            "t": "string"
+           },
+           "xMin": {
+            "t": "number",
+            "int": false
+           },
+           "xMax": {
+            "t": "number",
+            "int": false
+           },
+           "yMin": {
+            "t": "number",
+            "int": false
+           },
+           "yMax": {
+            "t": "number",
+            "int": false
+           },
+           "xLabel": {
+            "t": "string"
+           },
+           "yLabel": {
+            "t": "string"
+           },
+           "zLabel": {
+            "t": "string"
+           },
+           "diverging": {
+            "t": "boolean"
+           },
+           "marker": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "x": {
+               "t": "string"
+              },
+              "y": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "trajectory"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "state": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "name": {
+               "t": "string"
+              },
+              "init": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "update": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "name": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "steps": {
+            "t": "string"
+           },
+           "mode": {
+            "t": "enum",
+            "values": [
+             "time",
+             "path"
+            ]
+           },
+           "series": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "logY": {
+            "t": "boolean"
+           },
+           "path": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "x": {
+               "t": "string"
+              },
+              "y": {
+               "t": "string"
+              },
+              "xMin": {
+               "t": "number",
+               "int": false
+              },
+              "xMax": {
+               "t": "number",
+               "int": false
+              },
+              "yMin": {
+               "t": "number",
+               "int": false
+              },
+              "yMax": {
+               "t": "number",
+               "int": false
+              },
+              "xLabel": {
+               "t": "string"
+              },
+              "yLabel": {
+               "t": "string"
+              },
+              "surface": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "matrix"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "op": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "digits": {
+            "t": "number",
+            "int": true
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "calculator"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "rows": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "latex": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              },
+              "note": {
+               "t": "string"
+              },
+              "digits": {
+               "t": "number",
+               "int": true
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "cards"
+            ]
+           },
+           "variant": {
+            "t": "enum",
+            "values": [
+             "definition",
+             "rule",
+             "tip",
+             "mistake",
+             "claim",
+             "keynumber"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "title": {
+               "t": "string"
+              },
+              "md": {
+               "t": "string"
+              },
+              "breaksIf": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "evidence": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "value": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "toggle"
+            ]
+           },
+           "var": {
+            "t": "string"
+           },
+           "label": {
+            "t": "string"
+           },
+           "on": {
+            "t": "string"
+           },
+           "off": {
+            "t": "string"
+           },
+           "value": {
+            "t": "number",
+            "int": true
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "presets"
+            ]
+           },
+           "label": {
+            "t": "string"
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "set": {
+               "t": "array",
+               "element": {
+                "t": "object",
+                "shape": {
+                 "var": {
+                  "t": "string"
+                 },
+                 "value": {
+                  "t": "number",
+                  "int": false
+                 }
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "experiment"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "trial": {
+            "t": "string"
+           },
+           "outcomes": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "string"
+             }
+            }
+           },
+           "valueLabel": {
+            "t": "string"
+           },
+           "repeats": {
+            "t": "array",
+            "element": {
+             "t": "number",
+             "int": true
+            }
+           },
+           "truth": {
+            "t": "optional",
+            "inner": {
+             "t": "string"
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "examples"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "title": {
+               "t": "string"
+              },
+              "set": {
+               "t": "array",
+               "element": {
+                "t": "object",
+                "shape": {
+                 "var": {
+                  "t": "string"
+                 },
+                 "value": {
+                  "t": "number",
+                  "int": false
+                 }
+                }
+               }
+              },
+              "focus": {
+               "t": "string"
+              },
+              "steps": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "string"
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "table"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "columns": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "rows": {
+            "t": "array",
+            "element": {
+             "t": "array",
+             "element": {
+              "t": "string"
+             }
+            }
+           },
+           "digits": {
+            "t": "optional",
+            "inner": {
+             "t": "number",
+             "int": true
+            }
+           },
+           "highlight": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "row": {
+               "t": "number",
+               "int": true
+              },
+              "col": {
+               "t": "number",
+               "int": true
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "conceptmap"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "nodes": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "id": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "sub": {
+               "t": "string"
+              },
+              "desc": {
+               "t": "string"
+              },
+              "stage": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "edges": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "tokens"
+            ]
+           },
+           "text": {
+            "t": "string"
+           },
+           "tokens": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "attention"
+            ]
+           },
+           "tokens": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "weights": {
+            "t": "array",
+            "element": {
+             "t": "array",
+             "element": {
+              "t": "number",
+              "int": false
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "sampling"
+            ]
+           },
+           "context": {
+            "t": "string"
+           },
+           "candidates": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "token": {
+               "t": "string"
+              },
+              "logit": {
+               "t": "number",
+               "int": false
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "embedding"
+            ]
+           },
+           "points": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "x": {
+               "t": "number",
+               "int": false
+              },
+              "y": {
+               "t": "number",
+               "int": false
+              },
+              "group": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "architecture"
+            ]
+           },
+           "nodes": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "id": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "detail": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "edges": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "pipeline"
+            ]
+           },
+           "steps": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "input": {
+               "t": "string"
+              },
+              "output": {
+               "t": "string"
+              },
+              "detail": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "training"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "caption": {
+            "t": "string"
+           },
+           "showValidation": {
+            "t": "boolean"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "chart"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "lesson": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "series": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "x": {
+            "t": "string"
+           },
+           "by": {
+            "t": "string"
+           },
+           "at": {
+            "t": "array",
+            "element": {
+             "t": "number",
+             "int": false
+            }
+           },
+           "view": {
+            "t": "enum",
+            "values": [
+             "line",
+             "lines",
+             "heatmap",
+             "histogram",
+             "compare",
+             "running",
+             "bars",
+             "scatter",
+             "band",
+             "box",
+             "groupedbars"
+            ]
+           },
+           "labels": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "scene"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "lesson": {
+            "t": "string"
+           },
+           "state": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "name": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "value": {
+               "t": "number",
+               "int": false
+              },
+              "min": {
+               "t": "number",
+               "int": false
+              },
+              "max": {
+               "t": "number",
+               "int": false
+              },
+              "step": {
+               "t": "number",
+               "int": false
+              }
+             }
+            }
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "elements": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "id": {
+               "t": "string"
+              },
+              "kind": {
+               "t": "enum",
+               "values": [
+                "slider",
+                "button",
+                "chart",
+                "readout",
+                "bars",
+                "table",
+                "text"
+               ]
+              },
+              "visible": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "label": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "var": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "disabled": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "series": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "object",
+                 "shape": {
+                  "label": {
+                   "t": "string"
+                  },
+                  "expr": {
+                   "t": "string"
+                  }
+                 }
+                }
+               }
+              },
+              "x": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "by": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "at": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "number",
+                 "int": false
+                }
+               }
+              },
+              "view": {
+               "t": "optional",
+               "inner": {
+                "t": "enum",
+                "values": [
+                 "line",
+                 "lines",
+                 "heatmap",
+                 "histogram",
+                 "compare",
+                 "running",
+                 "bars",
+                 "scatter",
+                 "band",
+                 "box",
+                 "groupedbars"
+                ]
+               }
+              },
+              "expr": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "digits": {
+               "t": "optional",
+               "inner": {
+                "t": "number",
+                "int": true
+               }
+              },
+              "format": {
+               "t": "optional",
+               "inner": {
+                "t": "enum",
+                "values": [
+                 "number",
+                 "percent",
+                 "probability"
+                ]
+               }
+              },
+              "labels": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "string"
+                }
+               }
+              },
+              "values": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "highlight": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "columns": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "string"
+                }
+               }
+              },
+              "rows": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "array",
+                 "element": {
+                  "t": "string"
+                 }
+                }
+               }
+              },
+              "md": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "rules": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "when": {
+               "t": "enum",
+               "values": [
+                "click",
+                "change",
+                "every",
+                "start"
+               ]
+              },
+              "target": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "ms": {
+               "t": "optional",
+               "inner": {
+                "t": "number",
+                "int": false
+               }
+              },
+              "if": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "set": {
+               "t": "array",
+               "element": {
+                "t": "object",
+                "shape": {
+                 "var": {
+                  "t": "string"
+                 },
+                 "expr": {
+                  "t": "string"
+                 }
+                }
+               }
+              }
+             }
+            }
+           },
+           "layout": {
+            "t": "enum",
+            "values": [
+             "stack",
+             "grid"
+            ]
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "widget"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "html": {
+            "t": "string"
+           },
+           "plan": {
+            "t": "optional",
+            "inner": {
+             "t": "string"
+            }
+           }
+          }
+         }
+        ]
+       }
+      }
+     }
+    }
+   },
+   "glossary": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "term": {
+       "t": "string"
+      },
+      "definition": {
+       "t": "string"
+      }
+     }
+    }
+   }
+  }
+ },
+ "promptOutline": {
+  "t": "object",
+  "shape": {
+   "title": {
+    "t": "string"
+   },
+   "subtitle": {
+    "t": "string"
+   },
+   "level": {
+    "t": "enum",
+    "values": [
+     "beginner",
+     "student",
+     "practitioner"
+    ]
+   },
+   "layout": {
+    "t": "enum",
+    "values": [
+     "article",
+     "pipeline"
+    ]
+   },
+   "keyIntuition": {
+    "t": "string"
+   },
+   "phases": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "id": {
+       "t": "string"
+      },
+      "label": {
+       "t": "string"
+      }
+     }
+    }
+   },
+   "stages": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "id": {
+       "t": "string"
+      },
+      "label": {
+       "t": "string"
+      },
+      "phase": {
+       "t": "string"
+      },
+      "blurb": {
+       "t": "string"
+      },
+      "blocks": {
+       "t": "array",
+       "element": {
+        "t": "union",
+        "options": [
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "text"
+            ]
+           },
+           "md": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "callout"
+            ]
+           },
+           "variant": {
+            "t": "enum",
+            "values": [
+             "info",
+             "analogy",
+             "warning",
+             "key"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "md": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "formula"
+            ]
+           },
+           "latex": {
+            "t": "string"
+           },
+           "caption": {
+            "t": "string"
+           },
+           "terms": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "symbol": {
+               "t": "string"
+              },
+              "meaning": {
+               "t": "string"
+              },
+              "var": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "flipcards"
+            ]
+           },
+           "cards": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "front": {
+               "t": "string"
+              },
+              "back": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "reveal"
+            ]
+           },
+           "prompt": {
+            "t": "string"
+           },
+           "answer": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "tabs"
+            ]
+           },
+           "tabs": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "md": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "compare"
+            ]
+           },
+           "left": {
+            "t": "object",
+            "shape": {
+             "title": {
+              "t": "string"
+             },
+             "points": {
+              "t": "array",
+              "element": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "right": {
+            "t": "object",
+            "shape": {
+             "title": {
+              "t": "string"
+             },
+             "points": {
+              "t": "array",
+              "element": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "quiz"
+            ]
+           },
+           "questions": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "q": {
+               "t": "string"
+              },
+              "choices": {
+               "t": "array",
+               "element": {
+                "t": "string"
+               }
+              },
+              "answer": {
+               "t": "number",
+               "int": true
+              },
+              "explain": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "predict"
+            ]
+           },
+           "question": {
+            "t": "string"
+           },
+           "choices": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "answer": {
+            "t": "number",
+            "int": true
+           },
+           "explain": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "slider"
+            ]
+           },
+           "var": {
+            "t": "string"
+           },
+           "label": {
+            "t": "string"
+           },
+           "min": {
+            "t": "number",
+            "int": false
+           },
+           "max": {
+            "t": "number",
+            "int": false
+           },
+           "step": {
+            "t": "number",
+            "int": false
+           },
+           "value": {
+            "t": "number",
+            "int": false
+           },
+           "unit": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "choice"
+            ]
+           },
+           "var": {
+            "t": "string"
+           },
+           "label": {
+            "t": "string"
+           },
+           "options": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "value": {
+               "t": "number",
+               "int": false
+              }
+             }
+            }
+           },
+           "value": {
+            "t": "number",
+            "int": false
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "plot"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "xLabel": {
+            "t": "string"
+           },
+           "yLabel": {
+            "t": "string"
+           },
+           "xMin": {
+            "t": "number",
+            "int": false
+           },
+           "xMax": {
+            "t": "number",
+            "int": false
+           },
+           "yMin": {
+            "t": "number",
+            "int": false
+           },
+           "yMax": {
+            "t": "number",
+            "int": false
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "series": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "markerX": {
+            "t": "string"
+           },
+           "shade": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "series": {
+               "t": "number",
+               "int": true
+              },
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "sweepVar": {
+            "t": "optional",
+            "inner": {
+             "t": "string"
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "bars"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "labels": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "values": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "normalize": {
+            "t": "boolean"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "readout"
+            ]
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              },
+              "digits": {
+               "t": "number",
+               "int": true
+              },
+              "kind": {
+               "t": "optional",
+               "inner": {
+                "t": "enum",
+                "values": [
+                 "number",
+                 "percent",
+                 "probability"
+                ]
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "samples"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "values": {
+            "t": "string"
+           },
+           "xLabel": {
+            "t": "string"
+           },
+           "markers": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "band": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "stats": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              },
+              "digits": {
+               "t": "number",
+               "int": true
+              },
+              "kind": {
+               "t": "optional",
+               "inner": {
+                "t": "enum",
+                "values": [
+                 "number",
+                 "percent",
+                 "probability"
+                ]
+               }
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "heatmap"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "expr": {
+            "t": "string"
+           },
+           "xMin": {
+            "t": "number",
+            "int": false
+           },
+           "xMax": {
+            "t": "number",
+            "int": false
+           },
+           "yMin": {
+            "t": "number",
+            "int": false
+           },
+           "yMax": {
+            "t": "number",
+            "int": false
+           },
+           "xLabel": {
+            "t": "string"
+           },
+           "yLabel": {
+            "t": "string"
+           },
+           "zLabel": {
+            "t": "string"
+           },
+           "diverging": {
+            "t": "boolean"
+           },
+           "marker": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "x": {
+               "t": "string"
+              },
+              "y": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "trajectory"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "state": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "name": {
+               "t": "string"
+              },
+              "init": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "update": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "name": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "steps": {
+            "t": "string"
+           },
+           "mode": {
+            "t": "enum",
+            "values": [
+             "time",
+             "path"
+            ]
+           },
+           "series": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "logY": {
+            "t": "boolean"
+           },
+           "path": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "x": {
+               "t": "string"
+              },
+              "y": {
+               "t": "string"
+              },
+              "xMin": {
+               "t": "number",
+               "int": false
+              },
+              "xMax": {
+               "t": "number",
+               "int": false
+              },
+              "yMin": {
+               "t": "number",
+               "int": false
+              },
+              "yMax": {
+               "t": "number",
+               "int": false
+              },
+              "xLabel": {
+               "t": "string"
+              },
+              "yLabel": {
+               "t": "string"
+              },
+              "surface": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "matrix"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "op": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "digits": {
+            "t": "number",
+            "int": true
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "calculator"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "rows": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "latex": {
+               "t": "string"
+              },
+              "expr": {
+               "t": "string"
+              },
+              "note": {
+               "t": "string"
+              },
+              "digits": {
+               "t": "number",
+               "int": true
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "cards"
+            ]
+           },
+           "variant": {
+            "t": "enum",
+            "values": [
+             "definition",
+             "rule",
+             "tip",
+             "mistake",
+             "claim",
+             "keynumber"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "title": {
+               "t": "string"
+              },
+              "md": {
+               "t": "string"
+              },
+              "breaksIf": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "evidence": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              },
+              "value": {
+               "t": "optional",
+               "inner": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "toggle"
+            ]
+           },
+           "var": {
+            "t": "string"
+           },
+           "label": {
+            "t": "string"
+           },
+           "on": {
+            "t": "string"
+           },
+           "off": {
+            "t": "string"
+           },
+           "value": {
+            "t": "number",
+            "int": true
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "presets"
+            ]
+           },
+           "label": {
+            "t": "string"
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "set": {
+               "t": "array",
+               "element": {
+                "t": "object",
+                "shape": {
+                 "var": {
+                  "t": "string"
+                 },
+                 "value": {
+                  "t": "number",
+                  "int": false
+                 }
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "experiment"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "defs": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "object",
+              "shape": {
+               "name": {
+                "t": "string"
+               },
+               "expr": {
+                "t": "string"
+               }
+              }
+             }
+            }
+           },
+           "trial": {
+            "t": "string"
+           },
+           "outcomes": {
+            "t": "optional",
+            "inner": {
+             "t": "array",
+             "element": {
+              "t": "string"
+             }
+            }
+           },
+           "valueLabel": {
+            "t": "string"
+           },
+           "repeats": {
+            "t": "array",
+            "element": {
+             "t": "number",
+             "int": true
+            }
+           },
+           "truth": {
+            "t": "optional",
+            "inner": {
+             "t": "string"
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "examples"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "items": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "title": {
+               "t": "string"
+              },
+              "set": {
+               "t": "array",
+               "element": {
+                "t": "object",
+                "shape": {
+                 "var": {
+                  "t": "string"
+                 },
+                 "value": {
+                  "t": "number",
+                  "int": false
+                 }
+                }
+               }
+              },
+              "focus": {
+               "t": "string"
+              },
+              "steps": {
+               "t": "optional",
+               "inner": {
+                "t": "array",
+                "element": {
+                 "t": "string"
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "table"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "columns": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "rows": {
+            "t": "array",
+            "element": {
+             "t": "array",
+             "element": {
+              "t": "string"
+             }
+            }
+           },
+           "digits": {
+            "t": "optional",
+            "inner": {
+             "t": "number",
+             "int": true
+            }
+           },
+           "highlight": {
+            "t": "optional",
+            "inner": {
+             "t": "object",
+             "shape": {
+              "row": {
+               "t": "number",
+               "int": true
+              },
+              "col": {
+               "t": "number",
+               "int": true
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "conceptmap"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "nodes": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "id": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "sub": {
+               "t": "string"
+              },
+              "desc": {
+               "t": "string"
+              },
+              "stage": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "edges": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "tokens"
+            ]
+           },
+           "text": {
+            "t": "string"
+           },
+           "tokens": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "attention"
+            ]
+           },
+           "tokens": {
+            "t": "array",
+            "element": {
+             "t": "string"
+            }
+           },
+           "weights": {
+            "t": "array",
+            "element": {
+             "t": "array",
+             "element": {
+              "t": "number",
+              "int": false
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "sampling"
+            ]
+           },
+           "context": {
+            "t": "string"
+           },
+           "candidates": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "token": {
+               "t": "string"
+              },
+              "logit": {
+               "t": "number",
+               "int": false
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "embedding"
+            ]
+           },
+           "points": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "x": {
+               "t": "number",
+               "int": false
+              },
+              "y": {
+               "t": "number",
+               "int": false
+              },
+              "group": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "caption": {
+            "t": "string"
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "architecture"
+            ]
+           },
+           "nodes": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "id": {
+               "t": "string"
+              },
+              "label": {
+               "t": "string"
+              },
+              "detail": {
+               "t": "string"
+              }
+             }
+            }
+           },
+           "edges": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "from": {
+               "t": "string"
+              },
+              "to": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "pipeline"
+            ]
+           },
+           "steps": {
+            "t": "array",
+            "element": {
+             "t": "object",
+             "shape": {
+              "label": {
+               "t": "string"
+              },
+              "input": {
+               "t": "string"
+              },
+              "output": {
+               "t": "string"
+              },
+              "detail": {
+               "t": "string"
+              }
+             }
+            }
+           }
+          }
+         },
+         {
+          "t": "object",
+          "shape": {
+           "type": {
+            "t": "literal",
+            "values": [
+             "training"
+            ]
+           },
+           "title": {
+            "t": "string"
+           },
+           "caption": {
+            "t": "string"
+           },
+           "showValidation": {
+            "t": "boolean"
+           }
+          }
+         }
+        ]
+       }
+      }
+     }
+    }
+   },
+   "glossary": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "term": {
+       "t": "string"
+      },
+      "definition": {
+       "t": "string"
+      }
+     }
+    }
+   }
+  }
+ },
+ "design": {
+  "t": "object",
+  "shape": {
+   "theme": {
+    "t": "enum",
+    "values": [
+     "ocean",
+     "sunset",
+     "forest",
+     "graphite",
+     "berry",
+     "sand"
+    ]
+   },
+   "fontPairing": {
+    "t": "enum",
+    "values": [
+     "modern",
+     "editorial",
+     "technical",
+     "friendly"
+    ]
+   },
+   "headingStyle": {
+    "t": "enum",
+    "values": [
+     "gradient-banner",
+     "underline-accent",
+     "numbered-badge"
+    ]
+   },
+   "stageIcons": {
+    "t": "array",
+    "element": {
+     "t": "object",
+     "shape": {
+      "stageId": {
+       "t": "string"
+      },
+      "icon": {
+       "t": "enum",
+       "values": [
+        "document",
+        "scissors",
+        "numbers",
+        "abacus",
+        "ruler",
+        "compass",
+        "search",
+        "target",
+        "box",
+        "folders",
+        "brain",
+        "robot",
+        "chat",
+        "speaking",
+        "writing",
+        "image",
+        "palette",
+        "fog",
+        "audio",
+        "video",
+        "gear",
+        "wrench",
+        "experiment",
+        "bar_chart",
+        "trend_up",
+        "trend_down",
+        "training",
+        "dice",
+        "thermometer",
+        "loop",
+        "link",
+        "network",
+        "puzzle",
+        "ladder",
+        "rocket",
+        "lightning",
+        "shield",
+        "balance",
+        "trophy",
+        "check"
+       ]
+      }
+     }
+    }
+   },
+   "chatbot": {
+    "t": "object",
+    "shape": {
+     "systemPrompt": {
+      "t": "string"
+     },
+     "starters": {
+      "t": "array",
+      "element": {
+       "t": "string"
+      }
+     }
+    }
+   }
+  }
+ },
+ "brief": {
+  "t": "object",
+  "shape": {
+   "type": {
+    "t": "literal",
+    "values": [
+     "interactive"
+    ]
+   },
+   "goal": {
+    "t": "string"
+   },
+   "math": {
+    "t": "string"
+   },
+   "insight": {
+    "t": "string"
+   },
+   "scenarios": {
+    "t": "optional",
+    "inner": {
+     "t": "array",
+     "element": {
+      "t": "string"
+     }
+    }
+   }
+  }
+ },
+ "labWritten": [
+  "text",
+  "callout",
+  "formula",
+  "flipcards",
+  "reveal",
+  "tabs",
+  "compare",
+  "quiz",
+  "predict",
+  "cards",
+  "table",
+  "conceptmap"
+ ]
+}

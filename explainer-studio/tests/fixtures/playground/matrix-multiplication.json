@@ -1,0 +1,21 @@
+{
+  "title": "Matrix Multiplication",
+  "plan": {
+    "insight": "Each entry of C is the dot product of a row of A with a column of B.",
+    "user_changes": "click a cell of C, new random matrices",
+    "reacts": "highlighted row and column, the per-term products, the selected entry"
+  },
+  "state": { "A": [[1, 2, -1], [0, 3, 2]], "B": [[2, 0], [1, -1], [3, 1]], "sel": [0, 0] },
+  "components": [
+    { "id": "rnd", "type": "button", "label": "New matrices",
+      "onClick": "const m = (r, c) => range(r).map(() => range(c).map(() => randInt(7) - 3));\nreturn { A: m(2, 3), B: m(3, 2) };" },
+    { "id": "reset", "type": "button", "action": "reset" },
+    { "id": "mm", "type": "chart", "title": "A × B = C (click a cell of C)",
+      "draw": "const C = matmul(state.A, state.B), [r, c] = state.sel;\nreturn [\n  matrix(state.A, { id: 'A', label: 'A', highlightRows: [r] }),\n  matrix(state.B, { id: 'B', label: 'B', op: '×', highlightCols: [c] }),\n  matrix(C, { id: 'C', label: 'C', op: '=', highlightCells: [[r, c]] })\n];",
+      "onClick": "if (part !== 'cell' || id !== 'C') return null;\nconst cols = state.B[0].length;\nreturn { sel: [Math.floor(index / cols), index % cols] };" },
+    { "id": "terms", "type": "chart", "title": "Terms a·b of the selected entry",
+      "draw": "const [r, c] = state.sel, t = state.A[r].map((a, k) => a * state.B[k][c]);\nreturn [bars(t.map((v, k) => [k, v]), { labels: t.map((v, k) => `k=${k + 1}`), colors: t.map((v) => v >= 0 ? 'blue' : 'red') }), hline(0, { color: 'gray' })];" },
+    { "id": "entry", "type": "readout", "label": "Selected entry of C",
+      "value": "const [r, c] = state.sel;\nreturn dot(state.A[r], state.B.map((row) => row[c]));" }
+  ]
+}
