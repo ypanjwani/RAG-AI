@@ -47,3 +47,6 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# explainer-studio is its own repo: github.com/ypanjwani/Explainer-Studio
+explainer-studio/
